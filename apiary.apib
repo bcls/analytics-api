@@ -2,14 +2,24 @@ HOST: https://data.brightcove.com/analytics-api/videocloud
 
 --- Analytics API v1 ---
 ---
-Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+The Analytics API allows you to obtain analytics data for your Video Cloud accounts directly. You can also view the built-in analytics report in the Analytics Module of Video Cloud Studio. Accessing the data programmatically gives you additional flexibility for such purposes as:
+
+*Creating custom charts and displays
+*Merging or aggregating data from multiple accounts
+*Combining your video analytic data with other site analytics data
+
 ---
 
 --
-Report Resources
-The following is a section of resources related to analytics reports
+Report
+You can request reports using the path <code>/account/{accountId}/report</code>
 
-Parameters:
+###Parameters
+
+| Parameter  | Required | Default     | Description |
+| _________  | ________ | ___________ | ___________ |
+| dimensions | yes      | none        | The dimesion(s) to report on &mdash; one or more of the following values in a comma-delimited list: *video*, *player*, *referrer_domain*, *search_terms*, *source_type*, *device_type*, *device_os* |
+
 
 * dimensions (required): the dimension(s) to report on
 --
