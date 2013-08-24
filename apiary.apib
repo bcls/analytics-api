@@ -43,7 +43,7 @@ Reports return analytics data on one or more dimensions
 | limit         | no        | 10                    | The number of results to return &mdash; an integer greater than 0 |
 | offset        | no        | 0                     | The number of results to skip &mdash; an integer greater than or equal to 0 |
 | fields        | no        | [all fields]          | The [metrics fields](#metrics) to return &mdash; one or more metrics as a comma-delimited list |
-| format        | no        | json                  | The format to return the results in &mdash; *json*, *csv*, or *xlxs* |
+| format        | no        | json                  | The format to return the results in &mdash; *json*, *csv*, or *xlsx* |
 
 
 --
@@ -80,7 +80,6 @@ Rollup reports return summary data for your account
 
 | Parameter     | Required  | Default               | Description |
 | ---------     | :------:  | -------               | ----------- |
-| dimensions    | yes       | none                  | The dimesion(s) to report on &mdash; one or more of the following values in a comma-delimited list: *video*, *player*, *referrer_domain*, *search_terms*, *source_type*, *device_type*, *device_os* |
 | where         | no        | none                  | Filters for the report in the form *dimension1==value1;dimension2==value2* &mdash; for example: **video==123455;player==67890;search_terms==brightcove** |
 | from          | no        | 30 days before now    | Start time for the period covered by the report &mdash; either epoch time in milliseconds or *alltime* |
 | to            | no        | now                   | End time for the period covered by the report &mdash; either epoch time in milliseconds or *now* |
