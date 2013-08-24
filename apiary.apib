@@ -51,26 +51,7 @@ GET /account/{accountId}/report?{dimensions,where,limit,offset,from,to,sort,fiel
 > Authorization: Bearer 15075c51ae4b0af095c9a619a
 < 200
 < Content-Type: application/json
-{
-    "account": "20318290001",
-    "item_count": 123,
-    "items": [
-        {
-            "video": "2127145422001",
-            "video_duration": "124",
-            "video_engagement_1": 0,
-            "video_engagement_25": 4,
-            "video_engagement_50": 2,
-            "video_engagement_75": 2,
-            "video_engagement_100": 2,
-            "video_impression": 65,
-            "video_name": "Creating a Playlist (Japanese)",
-            "video_percent_viewed": 297.81667977970096,
-            "video_seconds_viewed": 369,
-            "video_view": 9
-        }
-    ]
-}
+{"type":"object","$schema": "http://json-schema.org/draft-03/schema","id": "http://jsonschema.net","required":false,"properties":{ "account": { "type":"string", "id": "http://jsonschema.net/account", "required":false }, "item_count": { "type":"number", "id": "http://jsonschema.net/item_count", "required":false }, "items": { "type":"array", "id": "http://jsonschema.net/items", "required":false, "items": { "type":"object", "id": "http://jsonschema.net/items/0", "required":false, "properties":{ "video_duration": { "type":"string", "id": "http://jsonschema.net/items/0/video_duration", "required":false }, "video_engagement_100": { "type":"number", "id": "http://jsonschema.net/items/0/video_engagement_100", "required":false }, "video_engagement_1": { "type":"number", "id": "http://jsonschema.net/items/0/video_engagement_1", "required":false }, "video_engagement_25": { "type":"number", "id": "http://jsonschema.net/items/0/video_engagement_25", "required":false }, "video_engagement_50": { "type":"number", "id": "http://jsonschema.net/items/0/video_engagement_50", "required":false }, "video_engagement_75": { "type":"number", "id": "http://jsonschema.net/items/0/video_engagement_75", "required":false }, "video_impression": { "type":"number", "id": "http://jsonschema.net/items/0/video_impression", "required":false }, "video_name": { "type":"string", "id": "http://jsonschema.net/items/0/video_name", "required":false }, "video_percent_viewed": { "type":"number", "id": "http://jsonschema.net/items/0/video_percent_viewed", "required":false }, "video_seconds_viewed": { "type":"number", "id": "http://jsonschema.net/items/0/video_seconds_viewed", "required":false }, "video_view": { "type":"number", "id": "http://jsonschema.net/items/0/video_view", "required":false }, "video": { "type":"string", "id": "http://jsonschema.net/items/0/video", "required":false } } } } }}
 
 Save new products in your shopping cart
 POST /shopping-cart
