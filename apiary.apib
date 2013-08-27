@@ -31,8 +31,6 @@ The Analytics API allows you to obtain analytics data for your Video Cloud accou
 
 Reports return analytics data on one or more dimensions
 
-### Retrieve a report [GET]
-
 + Parameters
 
     + dimensions (string, required) The dimesion(s) to report on &mdash; one or more of the following values in a comma-delimited list: *video*, *player*, *referrer_domain*, *search_terms*, *source_type*, *device_type*, *device_os*
@@ -60,13 +58,13 @@ Reports return analytics data on one or more dimensions
         + default: json
         + example: format=csv
 
-GET /account/{accountId}/report?{dimensions,where,limit,offset,from,to,sort,fields,format}
+### Retrieve a report [GET]
 
 + Headers
     ```
     Authorization: Bearer 15075c51ae4b0af095c9a619a
     ```
-        
+
 + Response 200 (application/json;charset=UTF-8)
     + Body
     
