@@ -1,14 +1,16 @@
 FORMAT: X-1A
-HOST: http://www.google.com/
 
-# Analytics-test
+HOST: https://data.brightcove.com/analytics-api/videocloud
+
+# Analytics API v1
+
 The Analytics API allows you to obtain analytics data for your Video Cloud accounts directly. You can also view the built-in analytics reports in the Analytics Module of [Video Cloud Studio](http://videocloud.brightcove.com). Accessing the data programmatically gives you additional flexibility for such purposes as:
 
 * Creating custom charts and displays
 * Merging or aggregating data from multiple accounts
 * Combining your video analytic data with other site analytics data
 
-### <a id="metrics"></a>Available Metrics (by report type)
+## <a id="metrics"></a>Available Metrics (by report type)
 | Metric                | Player    | Video    | Referrer_domain    | Search_terms | Account Rollup   |
 | -----                 | :----:    | :---:    | :-------------:    | :----------: | :------------:   |
 | player_load           | **x**     |          |     **x**          | **x**        |  **x**           |
@@ -24,34 +26,74 @@ The Analytics API allows you to obtain analytics data for your Video Cloud accou
 | bytes_stored          |           |          |                    |              |  **x**           |
 | bytes_player          |           |          |                    |              |  **x**           |
 
-Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
----
+# Reports and Rollups
 
---
-Shopping Cart Resources
-The following is a section of resources related to the shopping cart
---
+## Report [/account/{accountId}/report]
 
-List products added into your shopping-cart. (comment block again in Markdown)
-GET /shopping-cart
-< 200
-< Content-Type: application/json
-{ "items": [
-{ "url": "/shopping-cart/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
-] }
+Reports return analytics data on one or more dimensions
 
-Save new products in your shopping cart
-POST /shopping-cart
-> Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
-< 201
-< Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
+### Retrieve a report [GET]
 
--- Payment Resources --
++ Parameters
 
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
-< 200
-{ "receipt": "/payment/receipt/1" }
+    + dimensions (string, required) The dimesion(s) to report on &mdash; one or more of the following values in a comma-delimited list: *video*, *player*, *referrer_domain*, *search_terms*, *source_type*, *device_type*, *device_os*
+        + default: none
+        + example: dimensions=video,player
+    + where (string, optional) Filters for the report in the form *dimension1==value1;dimension2==value2*
+        + default: none
+        + example: video==123455;player==67890;search_terms==brightcove
+    + from (number/string, optional) Start time for the period covered by the report &mdash; either epoch time in milliseconds or *alltime*+
+        + default: 30 days before now
+        + example: from=1375761600000
+    + to (number/string, optional) End time for the period covered by the report &mdash; either epoch time in milliseconds or *now*
+        + default: now
+        + example: to=1377557757000
+    + limit (number, optional) The number of results to return &mdash; an integer greater than 0
+        + default: 10
+        + example: limit=25
+    + offset (number, optional) The number of results to skip &mdash; an integer greater than or equal to 0
+        + default: 0
+        + example: offset=50
+    + fields (string, optional) The [metrics fields](#metrics) to return &mdash; one or more metrics as a comma-delimited list
+        + default: [all fields available for the dimension(s)]
+        + example: fields=video_view,video_impression,video_percent_viewed
+    + format (string, optional) The format to return the results in &mdash; *json*, *csv*, or *xlsx*
+        + default: json
+        + example: format=csv
+
+GET /account/{accountId}/report?{dimensions,where,limit,offset,from,to,sort,fields,format}
+    + Headers
+        Authorization: Bearer 15075c51ae4b0af095c9a619a
++ Response 200 (application/json;charset=UTF-8)
+    + Headers
+    
+        Access-Control-Allow-Credentials: true
+        Access-Control-Allow-Origin: *
+        Connection: keep-alive
+        Content-Encoding: gzip
+        Server: Jetty(9.0.4.v20130625)
+        Transfer-Encoding: Identity
+        Vary: Accept-Encoding
+
+    + Body
+    
+        {
+            "account": "20318290001",
+            "item_count": 123,
+            "items": [
+                {
+                    "video": "2127145422001",
+                    "video_duration": "124",
+                    "video_engagement_1": 0,
+                    "video_engagement_25": 4,
+                    "video_engagement_50": 2,
+                    "video_engagement_75": 2,
+                    "video_engagement_100": 2,
+                    "video_impression": 65,
+                    "video_name": "Creating a Playlist (Japanese)",
+                    "video_percent_viewed": 297.81667977970096,
+                    "video_seconds_viewed": 369,
+                    "video_view": 9
+                }
+            ]
+        }
