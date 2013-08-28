@@ -9,7 +9,7 @@ The Analytics API allows you to obtain analytics data for your Video Cloud accou
 * Merging or aggregating data from multiple accounts
 * Combining your video analytic data with other site analytics data
 
-## Available Metrics (by report type) [metrics]
+## Available Metrics (by report type) [metrics] ##
 | Metric                | Player    | Video    | Referrer_domain    | Search_terms | Account Rollup   |
 | -----                 | :----:    | :---:    | :-------------:    | :----------: | :------------:   |
 | player_load           | **x**     |          |     **x**          | **x**        |  **x**           |
@@ -79,7 +79,7 @@ Reports return analytics data on one or more dimensions
         + Optional
         + Default: `[all fields available for the dimension(s)]`
         + Example: `fields=video_view,video_impression,video_percent_viewed`
-    + format 
+    + format
     The format to return the results in &mdash; *json*, *csv*, or *xlsx*
         + Type: string
         + Optional
@@ -95,7 +95,7 @@ Reports return analytics data on one or more dimensions
 
 + Response 200 (application/json;charset=UTF-8)
     + Body
-    
+
         ```js
         {
             "account": "20318290001",
