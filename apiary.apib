@@ -9,7 +9,7 @@ The Analytics API allows you to obtain analytics data for your Video Cloud accou
 * Merging or aggregating data from multiple accounts
 * Combining your video analytic data with other site analytics data
 
-## <a id="metrics"></a>Available Metrics (by report type)
+## Available Metrics (by report type) [metrics]
 | Metric                | Player    | Video    | Referrer_domain    | Search_terms | Account Rollup   |
 | -----                 | :----:    | :---:    | :-------------:    | :----------: | :------------:   |
 | player_load           | **x**     |          |     **x**          | **x**        |  **x**           |
@@ -25,40 +25,68 @@ The Analytics API allows you to obtain analytics data for your Video Cloud accou
 | bytes_stored          |           |          |                    |              |  **x**           |
 | bytes_player          |           |          |                    |              |  **x**           |
 
-# Reports and Rollups
-
-## Report [/account/{accountId}/report]
+# Report [/account/{accountId}/report]
 
 Reports return analytics data on one or more dimensions
 
 + Parameters
-
-    + dimensions (string, required) The dimesion(s) to report on &mdash; one or more of the following values in a comma-delimited list: *video*, *player*, *referrer_domain*, *search_terms*, *source_type*, *device_type*, *device_os*
-        + default: none
-        + example: dimensions=video,player
-    + where (string, optional) Filters for the report in the form *dimension1==value1;dimension2==value2*
-        + default: none
-        + example: video==123455;player==67890;search_terms==brightcove
-    + from (number/string, optional) Start time for the period covered by the report &mdash; either epoch time in milliseconds or *alltime*+
-        + default: 30 days before now
-        + example: from=1375761600000
-    + to (number/string, optional) End time for the period covered by the report &mdash; either epoch time in milliseconds or *now*
-        + default: now
-        + example: to=1377557757000
+    + dimensions
+    The dimesion(s) to report on &mdash; one or more in a comma-delimited list
+        + Type: string
+        + Required
+        + Default: `[none]`
+        + Example: `dimensions=video,player`
+        + Values:
+            + `video`
+            + `player`
+            + `referrer_domain`
+            + `search_terms`
+            + `source_type`
+            + `device_type`
+            + `device_os`
+    + where
+    Filters for the report in the form *dimension1==value1;dimension2==value2*
+        + Type: string
+        + Optional
+        + Default: `[none]`
+        + Example: `video==123455;player==67890;search_terms==brightcove`
+    + from
+    Start time for the period covered by the report &mdash; either epoch time in milliseconds or `alltime`
+        + Type: string
+        + Optional
+        + Default: `[30 days before now]`
+        + Example: `from=1375761600000` or `from=alltime`
+    + to
+    End time for the period covered by the report &mdash; either epoch time in milliseconds or *now*
+        + Type: string
+        + Optional
+        + Default: `now`
+        + Example: `to=1375761600000` or `to=now`
     + limit (number, optional) The number of results to return &mdash; an integer greater than 0
-        + default: 10
-        + example: limit=25
-    + offset (number, optional) The number of results to skip &mdash; an integer greater than or equal to 0
-        + default: 0
-        + example: offset=50
-    + fields (string, optional) The [metrics fields](#metrics) to return &mdash; one or more metrics as a comma-delimited list
-        + default: [all fields available for the dimension(s)]
-        + example: fields=video_view,video_impression,video_percent_viewed
-    + format (string, optional) The format to return the results in &mdash; *json*, *csv*, or *xlsx*
-        + default: json
-        + example: format=csv
+        + Type: number
+        + Optional
+        + Default: `10`
+        + Example: `limit=25`
+    + offset
+    The number of results to skip &mdash; an integer greater than or equal to 0
+        + Type: number
+        + Optional
+        + Default: `0`
+        + Example: `offset=50`
+    + fields
+    The [metrics][] to return &mdash; one or more metrics as a comma-delimited list
+        + Type: string
+        + Optional
+        + Default: `[all fields available for the dimension(s)]`
+        + Example: `fields=video_view,video_impression,video_percent_viewed`
+    + format 
+    The format to return the results in &mdash; *json*, *csv*, or *xlsx*
+        + Type: string
+        + Optional
+        + Default: `json`
+        + Example: `format=csv`
 
-### Retrieve a report [GET]
+## GET
 
 + Headers
     ```
